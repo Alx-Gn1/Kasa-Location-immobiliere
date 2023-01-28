@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/static/css/main.e00317de.css",
+    "main.css": "/static/css/main.34c1cc2e.css",
     "main.js": "/static/js/main.da369144.js",
     "static/js/787.ebe817f6.chunk.js": "/static/js/787.ebe817f6.chunk.js",
     "static/media/banner-A-propos.jpg": "/static/media/banner-A-propos.8ee3d9d309759ec49633.jpg",
@@ -12,12 +12,12 @@
     "static/media/star-rate-gray.svg": "/static/media/star-rate-gray.ae969662d77c07fdced4114f41bf3e69.svg",
     "static/media/star-rate-red.svg": "/static/media/star-rate-red.4d88975a9659a0bd069e76cc7382a43a.svg",
     "static/media/WhiteArrow.svg": "/static/media/WhiteArrow.16b912f87ce2849e129df0379fac8d0e.svg",
-    "main.e00317de.css.map": "/static/css/main.e00317de.css.map",
+    "main.34c1cc2e.css.map": "/static/css/main.34c1cc2e.css.map",
     "main.da369144.js.map": "/static/js/main.da369144.js.map",
     "787.ebe817f6.chunk.js.map": "/static/js/787.ebe817f6.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.e00317de.css",
+    "static/css/main.34c1cc2e.css",
     "static/js/main.da369144.js"
   ]
 }
