@@ -2,6 +2,9 @@ import { NavLink, Outlet } from "react-router-dom";
 import Logo from "../assets/kasa-logo.svg";
 import styles from "./Header.module.css";
 
+/**
+ * Header principal du site
+ */
 export default function Header() {
   return (
     <>

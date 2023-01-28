@@ -2,6 +2,11 @@ import styles from "./ScoreVisualizer.module.css";
 import redStar from "../assets/star-rate-red.svg";
 import grayStar from "../assets/star-rate-gray.svg";
 
+/**
+ * Permet de visualiser un score sous forme d'étoiles pleines ou vides
+ * @param {number} param0
+ * @returns
+ */
 const ScoreVisualizer = ({ rating }) => {
   const maxRating = 5;
   let starList = [];

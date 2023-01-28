@@ -6,6 +6,9 @@ import RentPage from "../pages/RentPage";
 import Footer from "./Footer";
 import Header from "./Header";
 
+/**
+ * Router de l'application
+ */
 const RouterLayout = () => {
   const browserRouter = createBrowserRouter([
     {

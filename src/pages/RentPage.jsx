@@ -7,6 +7,9 @@ import Tag from "../components/Tag";
 import { useGetRentData } from "../utils/hooks/useGetRentData";
 import styles from "./RentPage.module.css";
 
+/**
+ * Rent page
+ */
 const RentPage = () => {
   let { id } = useParams();
   const { data } = useGetRentData({ id, timeout: 1000 });
@@ -19,6 +22,7 @@ const RentPage = () => {
   }
   window.scrollTo(0, 0);
 
+  // Les ? et autres conditions servent à créer le skeleton loader dans le cas où les data n'auraient pas encore chargées
   return (
     <div className={styles.mainContainer}>
       <Carousel images={data?.pictures} />

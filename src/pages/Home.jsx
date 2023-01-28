@@ -4,6 +4,9 @@ import styles from "./Home.module.css";
 import { useDummyData } from "../utils/hooks/useDummyData";
 import { RentingCard, RentingCardSkeleton } from "../components/RentingCard";
 
+/**
+ * Home page
+ */
 const Home = () => {
   const { data } = useDummyData(1000);
 

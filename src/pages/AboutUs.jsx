@@ -3,6 +3,7 @@ import ImageBanner from "../components/ImageBanner";
 import bannerImage from "../assets/banner-A-propos.jpg";
 import DropdownText from "../components/DropdownText";
 
+// Texte à afficher dans les différents collapses (appelés ici dropdown)
 const contents = {
   fiabilite: (
     <p>
@@ -32,6 +33,9 @@ const contents = {
   ),
 };
 
+/**
+ * Page "à propos"
+ */
 const AboutUs = () => {
   return (
     <div className={styles.mainContainer}>

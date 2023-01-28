@@ -1,6 +1,9 @@
 import logo from "../assets/kasa-logo-white.svg";
 import styles from "./Footer.module.css";
 
+/**
+ * Footer du site
+ */
 function Footer() {
   return (
     <footer className={styles.footer}>

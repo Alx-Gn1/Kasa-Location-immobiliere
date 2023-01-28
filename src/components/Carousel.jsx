@@ -3,7 +3,15 @@ import whiteArrow from "../assets/WhiteArrow.svg";
 import { useReducer } from "react";
 import imageIcon from "../assets/image-icon.png";
 
+/**
+ * Affiche un Carousel/Slideshow d'image, qui défilent automatiquement
+ * On peut également faire défiler vers l'image suivante ou précédente en cliquant sur les boutons
+ * @param {[String]} param0
+ * @returns
+ */
 const Carousel = ({ images }) => {
+  // La transition se fait en css (on retrouve la durée pour les classes .right .left et .center)
+  // On adapte notre code javascript pour actualiser notre state une fois l'animation terminée
   const cssAnimDuration = 600;
   function reducer(state, action) {
     switch (action) {
@@ -17,8 +25,10 @@ const Carousel = ({ images }) => {
   }
   const [state, dispatch] = useReducer(reducer, { currentImage: 0 });
 
-  // Fonctions pour faire défiler les images
+  // Fonctions pour faire défiler les images :
+  // onGoingAnim permet d'éviter à l'utilisateur de spam click sur une flèche, ce qui peut poser des erreurs visuelles dans l'animation
   let onGoingAnim = false;
+
   const goToNextImage = () => {
     onGoingAnim = true;
     // Get current & next image
@@ -28,12 +38,18 @@ const Carousel = ({ images }) => {
         ? document.querySelector(`[data-index="${state.currentImage + 1}"]`)
         : document.querySelector(`[data-index="0"]`);
 
-    // Setup starting position, then ending position, transition is done in css
+    // L'image actuelle commence au centre (classe ".center"), l'image suivant doit venir de droite donc on lui applique la classe .right
+    // L'image actuelle doit "partir" à gauche et la nouvelle image se retrouver au centre,
+    // on applique les classes avec un décalage pour que la transition se fasse uniquement à l'aide du css
+    //
+    // Une fois l'animation terminée l'ancienne image est masqué (la variable est currentImage puisqu'on a pas encore actualisé le state)
+    // La nouvelle image garde sa class ".center" pour le prochain défilement d'images
+    // On actualise ensuite le state
     nextImage.className = styles.right;
     setTimeout(() => {
       currentImage.className = styles.left;
       nextImage.className = styles.center;
-    }, 100);
+    }, 10);
     setTimeout(() => {
       currentImage.removeAttribute("class");
       dispatch("increment");
@@ -48,7 +64,7 @@ const Carousel = ({ images }) => {
         ? document.querySelector(`[data-index="${state.currentImage - 1}"]`)
         : document.querySelector(`[data-index="${images.length - 1}"]`);
 
-    // Setup starting position, then ending position, transition is done in css
+    // Même raisonnement que pour la fonction goToNextImage() sauf qu'on inverse la gauche et la droite
     prevImage.className = styles.left;
     setTimeout(() => {
       currentImage.className = styles.right;
@@ -60,7 +76,9 @@ const Carousel = ({ images }) => {
     }, cssAnimDuration);
   };
 
-  // Interval pour faire défiler les images automatiques
+  // Interval pour faire défiler les images automatiquement
+  // On ne veut pas que le défilement automatique perturbe l'utilisateur quand il fait défiler manuellement les images
+  // Donc la fonction reset se lance à chaque appuie sur les boutons Next ou Prev
   let nextImageInterval = setInterval(() => {
     if (onGoingAnim === false && images.length > 1) goToNextImage();
   }, 8000);
@@ -71,12 +89,14 @@ const Carousel = ({ images }) => {
     }, 8000);
   };
 
+  // Component vide dans le cas où les data n'auraient pas encore été chargées par la page
   if (!images)
     return (
       <div className={`${styles.mainContainer} ${styles.loading}`}>
         <img src={imageIcon} alt="icon" className={styles.emptyImage} />
       </div>
     );
+  //
   return (
     <div className={styles.mainContainer}>
       <div className={styles.imagesContainer}>
@@ -98,6 +118,7 @@ const Carousel = ({ images }) => {
         })}
       </div>
       <div className={styles.uiContainer}>
+        {/* S'il y a 1 seule image les boutons précédent et suivant ne s'affichent pas */}
         {images.length <= 1 ? null : (
           <>
             <button
