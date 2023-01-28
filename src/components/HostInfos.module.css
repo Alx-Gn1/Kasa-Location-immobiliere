@@ -1,0 +1,15 @@
+.infoContainer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 16px;
+  font-size: 18px;
+  font-weight: 600;
+  text-align: right;
+}
+.infoContainer img {
+  border-radius: 50%;
+  width: 64px;
+  height: 64px;
+  object-fit: cover;
+}

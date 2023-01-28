@@ -1,0 +1,80 @@
+.mainContainer {
+  padding: 0 20px 48px 20px;
+}
+.titleSection {
+  margin-top: 24px;
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+}
+.titleContainer h1 {
+  font-size: 32px;
+  margin-bottom: 4px;
+}
+.titleContainer p {
+  font-size: 18px;
+}
+.tagContainer {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+}
+.sectionColumn {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.infoSection {
+  margin-top: 24px;
+  display: flex;
+  justify-content: space-between;
+  gap: 96px;
+}
+.equipments {
+  list-style-type: none;
+}
+
+@media screen and (width < 600px) {
+  .infoSection {
+    flex-direction: column;
+    gap: 24px;
+  }
+  .sectionColumn {
+    flex-direction: row-reverse;
+    align-items: center;
+  }
+  .titleSection {
+    flex-direction: column;
+  }
+  .tagContainer {
+    flex-wrap: wrap;
+  }
+}
+
+@media screen and (600px <= width < 1024px) {
+  .mainContainer {
+    padding: 0 48px 48px 48px;
+  }
+  .infoSection {
+    gap: 48px;
+  }
+  .tagContainer {
+    flex-wrap: wrap;
+  }
+  .titleContainer h1 {
+    font-size: 28px;
+  }
+  .sectionColumn {
+    justify-content: flex-end;
+  }
+}
+@media screen and (width >= 1024px) {
+  .mainContainer {
+    padding: 0 96px 48px 96px;
+  }
+  .titleContainer h1 {
+    font-size: 32px;
+  }
+}

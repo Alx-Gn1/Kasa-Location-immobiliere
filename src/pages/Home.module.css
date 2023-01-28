@@ -1,0 +1,49 @@
+.gridVariables {
+  --gap: 16px;
+  --padding-horizontal: 0;
+  --padding-vertical: 0;
+}
+
+.mainContainer {
+  padding: 0 20px;
+}
+.cardContainer {
+  margin-top: 48px;
+  composes: gridVariables;
+
+  border-radius: 24px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 24px;
+
+  padding: var(--padding-vertical) var(--padding-horizontal);
+  gap: var(--gap);
+}
+
+@media screen and (600px <= width < 1024px) {
+  .mainContainer {
+    padding: 0 48px;
+  }
+  .gridVariables {
+    --gap: 36px;
+    --padding-horizontal: 24px;
+    --padding-vertical: 36px;
+  }
+  .cardContainer {
+    background-color: var(--gray-background);
+  }
+}
+@media screen and (width >= 1024px) {
+  .mainContainer {
+    padding: 0 96px;
+  }
+  .gridVariables {
+    --gap: 48px;
+    --padding-horizontal: 48px;
+    --padding-vertical: 48px;
+  }
+  .cardContainer {
+    background-color: var(--gray-background);
+  }
+}

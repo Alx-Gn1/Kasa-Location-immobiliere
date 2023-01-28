@@ -1,0 +1,16 @@
+.container {
+  padding: 4px 40px;
+  background: linear-gradient(to right, var(--primary-color) 33%, #fc6d6d 50%, var(--primary-color) 67%);
+  background-size: 300%;
+  border-radius: 12px;
+  background-position: right;
+  transition: all 2s;
+  cursor: default;
+}
+.container:hover {
+  background-position: left;
+}
+.container p {
+  font-size: 14px !important ;
+  color: var(--text-second);
+}

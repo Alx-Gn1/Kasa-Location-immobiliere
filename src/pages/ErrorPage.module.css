@@ -1,0 +1,27 @@
+.container {
+  text-align: center;
+  padding-top: 96px;
+}
+.status {
+  font-weight: 900;
+  font-size: 120px;
+}
+.message {
+  font-weight: 500;
+  font-size: 36px;
+}
+.homepageLink {
+  font-size: 18px;
+  line-height: 248px;
+}
+
+@media screen and (600px <= width < 1024px) {
+  .status {
+    font-size: 144px;
+  }
+}
+@media screen and (width >= 1024px) {
+  .status {
+    font-size: 288px;
+  }
+}
