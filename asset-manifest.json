@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "/kasa-location-immobiliere/static/css/main.e00317de.css",
-    "main.js": "/kasa-location-immobiliere/static/js/main.29eead57.js",
-    "static/js/787.ebe817f6.chunk.js": "/kasa-location-immobiliere/static/js/787.ebe817f6.chunk.js",
-    "static/media/banner-A-propos.jpg": "/kasa-location-immobiliere/static/media/banner-A-propos.8ee3d9d309759ec49633.jpg",
-    "static/media/banner-Home.jpg": "/kasa-location-immobiliere/static/media/banner-Home.9d2af5fc90ca1550e554.jpg",
-    "static/media/profile1.jpg": "/kasa-location-immobiliere/static/media/profile1.59090e2d88d316e63565.jpg",
-    "static/media/kasa-logo.svg": "/kasa-location-immobiliere/static/media/kasa-logo.759702e80d2cca5e6d54b41ca6682c02.svg",
-    "static/media/kasa-logo-white.svg": "/kasa-location-immobiliere/static/media/kasa-logo-white.ee689fd9409d1b5a898b4247819d8a00.svg",
-    "index.html": "/kasa-location-immobiliere/index.html",
-    "static/media/star-rate-gray.svg": "/kasa-location-immobiliere/static/media/star-rate-gray.ae969662d77c07fdced4114f41bf3e69.svg",
-    "static/media/star-rate-red.svg": "/kasa-location-immobiliere/static/media/star-rate-red.4d88975a9659a0bd069e76cc7382a43a.svg",
-    "static/media/WhiteArrow.svg": "/kasa-location-immobiliere/static/media/WhiteArrow.16b912f87ce2849e129df0379fac8d0e.svg",
-    "main.e00317de.css.map": "/kasa-location-immobiliere/static/css/main.e00317de.css.map",
-    "main.29eead57.js.map": "/kasa-location-immobiliere/static/js/main.29eead57.js.map",
-    "787.ebe817f6.chunk.js.map": "/kasa-location-immobiliere/static/js/787.ebe817f6.chunk.js.map"
+    "main.css": "/static/css/main.e00317de.css",
+    "main.js": "/static/js/main.da369144.js",
+    "static/js/787.ebe817f6.chunk.js": "/static/js/787.ebe817f6.chunk.js",
+    "static/media/banner-A-propos.jpg": "/static/media/banner-A-propos.8ee3d9d309759ec49633.jpg",
+    "static/media/banner-Home.jpg": "/static/media/banner-Home.9d2af5fc90ca1550e554.jpg",
+    "static/media/profile1.jpg": "/static/media/profile1.59090e2d88d316e63565.jpg",
+    "static/media/kasa-logo.svg": "/static/media/kasa-logo.759702e80d2cca5e6d54b41ca6682c02.svg",
+    "static/media/kasa-logo-white.svg": "/static/media/kasa-logo-white.ee689fd9409d1b5a898b4247819d8a00.svg",
+    "index.html": "/index.html",
+    "static/media/star-rate-gray.svg": "/static/media/star-rate-gray.ae969662d77c07fdced4114f41bf3e69.svg",
+    "static/media/star-rate-red.svg": "/static/media/star-rate-red.4d88975a9659a0bd069e76cc7382a43a.svg",
+    "static/media/WhiteArrow.svg": "/static/media/WhiteArrow.16b912f87ce2849e129df0379fac8d0e.svg",
+    "main.e00317de.css.map": "/static/css/main.e00317de.css.map",
+    "main.da369144.js.map": "/static/js/main.da369144.js.map",
+    "787.ebe817f6.chunk.js.map": "/static/js/787.ebe817f6.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.e00317de.css",
-    "static/js/main.29eead57.js"
+    "static/js/main.da369144.js"
   ]
 }
