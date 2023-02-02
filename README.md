@@ -14,5 +14,5 @@ Le router configuré n'est pas adapté à l'hébergement sur gitHub page, on arr
 
 Impossible d'actualiser le site sinon on arrive sur la page 404 de github
 
-L'application react lancée avec npm start est fonctionnelle
+(L'application react lancée avec npm start est fonctionnelle)
 
