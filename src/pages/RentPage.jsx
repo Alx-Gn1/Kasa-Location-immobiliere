@@ -10,17 +10,12 @@ import styles from "./RentPage.module.css";
 /**
  * Rent page
  */
-const RentPage = () => {
-  let { id } = useParams();
-  const { data } = useGetRentData({ id, timeout: 1000 });
-
-  // Depuis l'implémentation des data router dans la v6 l'utilisateur peut être automatiquement redirigé vers la page d'erreur quand on lance une exception
-  // Cela nous évite d'utiliser useNavigate
-  // https://reactrouter.com/en/main/route/error-element
-  if (data === "Not Found") {
-    throw new Error("La location que vous cherchiez n'existe pas");
-  }
+const RentPage = ({ timeout, dummy_datas }) => {
   window.scrollTo(0, 0);
+  let { id } = useParams();
+  // le timeout et les dummy sont là pour des questions de debug
+  let data = useGetRentData({ id, timeout: timeout || 1000 });
+  if (dummy_datas) data = dummy_datas;
 
   // Les ? et autres conditions servent à créer le skeleton loader dans le cas où les data n'auraient pas encore chargées
   return (
@@ -28,9 +23,11 @@ const RentPage = () => {
       <Carousel images={data?.pictures} />
       <section className={styles.titleSection}>
         <div className={styles.titleContainer}>
-          <h1>{data?.title || "Loading..."}</h1>
-          <p>{data?.location || "-"}</p>
-          <div className={styles.tagContainer}>{data ? data.tags.map((tag) => <Tag tag={tag} key={tag} />) : null}</div>
+          <h1 data-testid="rentTitle">{data?.title || "Loading..."}</h1>
+          <p data-testid="rentLocation">{data?.location || "-"}</p>
+          <div data-testid="tagContainer" className={styles.tagContainer}>
+            {data ? data.tags.map((tag) => <Tag tag={tag} key={tag} />) : null}
+          </div>
         </div>
         <div className={styles.sectionColumn}>
           <HostInfos fullName={data?.host.name} picture={data?.host.picture} />

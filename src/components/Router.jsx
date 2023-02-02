@@ -1,7 +1,7 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import AboutUs from "../pages/AboutUs";
-import ErrorPage from "../pages/ErrorPage";
 import Home from "../pages/Home";
+import NotFound from "../pages/NotFound";
 import RentPage from "../pages/RentPage";
 import Footer from "./Footer";
 import Header from "./Header";
@@ -14,11 +14,11 @@ const RouterLayout = () => {
     {
       path: "/",
       element: <Header />,
-      errorElement: <ErrorPage />,
       children: [
         { path: "", element: <Home /> },
         { path: "about", element: <AboutUs /> },
         { path: "rent/:id", element: <RentPage /> },
+        { path: "*", element: <NotFound /> },
       ],
     },
   ]);

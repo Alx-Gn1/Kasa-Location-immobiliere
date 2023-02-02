@@ -8,19 +8,21 @@ import { RentingCard, RentingCardSkeleton } from "../components/RentingCard";
  * Home page
  */
 const Home = () => {
-  const { data } = useDummyData(1000);
+  const DummyDatas = useDummyData(1000);
 
   return (
     <div className={styles.mainContainer}>
       <ImageBanner src={bannerImage} alt="Bannière de la page d'acceuil" text="Chez vous, partout et ailleurs" />
       <section className={styles.cardContainer}>
-        {data ? (
-          data.data.map((rentingData, index) => <RentingCard data={rentingData} key={rentingData.id} index={index} />)
+        {DummyDatas ? (
+          DummyDatas.data.map((rentingData, index) => (
+            <RentingCard data={rentingData} key={rentingData.id} index={index} />
+          ))
         ) : (
           <>
-            <RentingCardSkeleton />
-            <RentingCardSkeleton />
-            <RentingCardSkeleton />
+            <RentingCardSkeleton index={1} />
+            <RentingCardSkeleton index={2} />
+            <RentingCardSkeleton index={3} />
           </>
         )}
       </section>

@@ -2,6 +2,9 @@ import styles from "./Carousel.module.css";
 import whiteArrow from "../assets/WhiteArrow.svg";
 import { useReducer } from "react";
 import imageIcon from "../assets/image-icon.png";
+import { goToNextImage, goToPrevImage } from "../utils/functions/CarouselFunctions";
+import { useEffect } from "react";
+import { useRef } from "react";
 
 /**
  * Affiche un Carousel/Slideshow d'image, qui défilent automatiquement
@@ -9,10 +12,9 @@ import imageIcon from "../assets/image-icon.png";
  * @param {[String]} param0
  * @returns
  */
-const Carousel = ({ images }) => {
-  // La transition se fait en css (on retrouve la durée pour les classes .right .left et .center)
-  // On adapte notre code javascript pour actualiser notre state une fois l'animation terminée
-  const cssAnimDuration = 600;
+const Carousel = ({ images, testDispatch, testGetCurrentState }) => {
+  // Si on atteint la dernière image, la fonction next image ramène l'utilisateur à la 1e image
+  // Si on est à la 1e image, la fonction prev image ramène l'utilisateur à la dernière image
   function reducer(state, action) {
     switch (action) {
       case "increment":
@@ -24,90 +26,57 @@ const Carousel = ({ images }) => {
     }
   }
   const [state, dispatch] = useReducer(reducer, { currentImage: 0 });
+  // Permet de lancer un increment ou decrement et de vérifier que le state est bien modifié correctement
+  if (testGetCurrentState) testGetCurrentState(state);
+  if (testDispatch) testDispatch(dispatch);
+  if (testGetCurrentState) testGetCurrentState(state);
 
-  // Fonctions pour faire défiler les images :
+  // La transition se fait en css (on retrouve la durée de l'animation sur les classes .right .left et .center)
+  // On adapte notre code javascript pour actualiser notre state une fois l'animation terminée
+  const cssAnimDuration = 600;
   // onGoingAnim permet d'éviter à l'utilisateur de spam click sur une flèche, ce qui peut poser des erreurs visuelles dans l'animation
-  let onGoingAnim = false;
-
-  const goToNextImage = () => {
-    onGoingAnim = true;
-    // Get current & next image
-    const currentImage = document.querySelector(`[data-index="${state.currentImage}"]`);
-    const nextImage =
-      state.currentImage < images.length - 1
-        ? document.querySelector(`[data-index="${state.currentImage + 1}"]`)
-        : document.querySelector(`[data-index="0"]`);
-
-    // L'image actuelle commence au centre (classe ".center"), l'image suivant doit venir de droite donc on lui applique la classe .right
-    // L'image actuelle doit "partir" à gauche et la nouvelle image se retrouver au centre,
-    // on applique les classes avec un décalage pour que la transition se fasse uniquement à l'aide du css
-    //
-    // Une fois l'animation terminée l'ancienne image est masqué (la variable est currentImage puisqu'on a pas encore actualisé le state)
-    // La nouvelle image garde sa class ".center" pour le prochain défilement d'images
-    // On actualise ensuite le state
-    nextImage.className = styles.right;
-    setTimeout(() => {
-      currentImage.className = styles.left;
-      nextImage.className = styles.center;
-    }, 10);
-    setTimeout(() => {
-      currentImage.removeAttribute("class");
-      dispatch("increment");
-    }, cssAnimDuration);
-  };
-  const goToPrevImage = () => {
-    onGoingAnim = true;
-    // Get current & next image
-    const currentImage = document.querySelector(`[data-index="${state.currentImage}"]`);
-    const prevImage =
-      state.currentImage > 0
-        ? document.querySelector(`[data-index="${state.currentImage - 1}"]`)
-        : document.querySelector(`[data-index="${images.length - 1}"]`);
-
-    // Même raisonnement que pour la fonction goToNextImage() sauf qu'on inverse la gauche et la droite
-    prevImage.className = styles.left;
-    setTimeout(() => {
-      currentImage.className = styles.right;
-      prevImage.className = styles.center;
-    }, 100);
-    setTimeout(() => {
-      currentImage.removeAttribute("class");
-      dispatch("decrement");
-    }, cssAnimDuration);
-  };
-
+  // La variable passe à true quand une animation est en cours
+  const onGoingAnim = useRef(false);
   // Interval pour faire défiler les images automatiquement
-  // On ne veut pas que le défilement automatique perturbe l'utilisateur quand il fait défiler manuellement les images
-  // Donc la fonction reset se lance à chaque appuie sur les boutons Next ou Prev
-  let nextImageInterval = setInterval(() => {
-    if (onGoingAnim === false && images.length > 1) goToNextImage();
-  }, 8000);
-  const resetInterval = () => {
-    clearInterval(nextImageInterval);
-    nextImageInterval = setInterval(() => {
-      if (onGoingAnim === false && images.length > 1) goToNextImage();
-    }, 8000);
-  };
+
+  const resetInterval = useRef(null);
+  useEffect(() => {
+    const canBeExecuted = onGoingAnim.current === false && images && images.length > 1;
+    const nextImg = () => goToNextImage({ onGoingAnim, state, images, styles, dispatch, cssAnimDuration });
+    let nextImageInterval = setInterval(() => {
+      if (canBeExecuted) nextImg();
+    }, 6000);
+    // On ne veut pas que le défilement automatique perturbe l'utilisateur quand il fait défiler manuellement les images
+    // La fonction reset se lance à chaque appuie sur les boutons Next ou Prev
+    resetInterval.current = () => {
+      clearInterval(nextImageInterval);
+      nextImageInterval = setInterval(() => {
+        if (canBeExecuted) nextImg();
+      }, 6000);
+    };
+
+    return () => clearInterval(nextImageInterval);
+  }, [images, state]);
 
   // Component vide dans le cas où les data n'auraient pas encore été chargées par la page
   if (!images)
     return (
-      <div className={`${styles.mainContainer} ${styles.loading}`}>
+      <div data-testid="CarouselLoading" className={`${styles.mainContainer} ${styles.loading}`}>
         <img src={imageIcon} alt="icon" className={styles.emptyImage} />
       </div>
     );
-  //
+
   return (
-    <div className={styles.mainContainer}>
-      <div className={styles.imagesContainer}>
-        {images.map((image, index) => {
-          const src = image;
+    <div data-testid="CarouselLoaded" className={styles.mainContainer}>
+      <div data-testid="imageContainer" className={styles.imagesContainer}>
+        {images.map((src, index) => {
           const splitSrc = src.split("/");
           const fileName = splitSrc.at(-1).split(".").slice(0, -1).join(".");
           let Classname = [];
           if (index === state.currentImage) Classname.push(styles.center);
           return (
             <img
+              data-testid="carouselSlide"
               src={src}
               alt={fileName}
               key={index}
@@ -122,20 +91,26 @@ const Carousel = ({ images }) => {
         {images.length <= 1 ? null : (
           <>
             <button
+              data-testid="carouselPrev"
               className={styles.prevButton}
               onClick={() => {
-                resetInterval();
-                if (onGoingAnim === false) goToPrevImage();
+                resetInterval.current();
+                if (onGoingAnim.current === false) {
+                  goToPrevImage({ onGoingAnim, state, images, styles, dispatch, cssAnimDuration });
+                }
               }}
             >
               <img src={whiteArrow} alt="go to previous slide button" />
             </button>
             <span>{state.currentImage + 1 + "/" + images.length}</span>
             <button
+              data-testid="carouselNext"
               className={styles.nextButton}
               onClick={() => {
-                resetInterval();
-                if (onGoingAnim === false) goToNextImage();
+                resetInterval.current();
+                if (onGoingAnim.current === false) {
+                  goToNextImage({ onGoingAnim, state, images, styles, dispatch, cssAnimDuration });
+                }
               }}
             >
               <img src={whiteArrow} alt="go to next slide button" />

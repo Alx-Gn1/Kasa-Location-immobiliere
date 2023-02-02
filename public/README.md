@@ -1,9 +1,13 @@
-
 # Kasa - Location immobilière
 
 Site de location immobilière réalisé avec react-JS
 
+## Pour télécharger le repo
 
+Aller sur la branche "main"
+La branche sur laquelle vous êtes sert au deploiement sur github pages
+
+https://github.com/Alx-Gn1/kasa-location-immobiliere/tree/main
 
 ## Github Page
 

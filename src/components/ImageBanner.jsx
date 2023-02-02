@@ -9,7 +9,7 @@ import styles from "./ImageBanner.module.css";
  */
 const ImageBanner = ({ src, alt, text }) => {
   return (
-    <div className={styles.imageWrapper}>
+    <div data-testid="imageBanner" className={styles.imageWrapper}>
       <img src={src} alt={alt} />
       <span className={styles.bannerText}>{text}</span>
     </div>

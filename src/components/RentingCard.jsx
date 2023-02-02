@@ -7,8 +7,8 @@ import { useEffect } from "react";
 /**
  * Skeleton loader en attendant que le site ait chargé les données de location
  */
-export const RentingCardSkeleton = () => (
-  <div className={styles.skeletonContainer}>
+export const RentingCardSkeleton = ({ index }) => (
+  <div data-testid="rentingCardSkeleton" className={styles.skeletonContainer}>
     <img src={imageIcon} alt="icon" />
     <div className={styles.fakeText}></div>
   </div>
@@ -31,7 +31,7 @@ export const RentingCard = ({ data, index }) => {
   }, [index]);
 
   return (
-    <div className={containerClasses}>
+    <div data-testid="rentingCard" title={data.id} className={containerClasses}>
       <img src={data.cover} alt={data.title + " " + data.location} />
       <Link className={styles.link} to={"/rent/" + data.id}>
         {data.title}

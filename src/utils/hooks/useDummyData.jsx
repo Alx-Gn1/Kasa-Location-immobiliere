@@ -18,5 +18,5 @@ export const useDummyData = (time) => {
     });
   }, [time]);
 
-  return { data };
+  if (data) return data;
 };

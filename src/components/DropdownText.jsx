@@ -14,6 +14,7 @@ const DropdownText = ({ title, content, width }) => {
 
   return (
     <div
+      data-testid="collapse"
       className={width === "50%" ? `${styles.container} ${styles.half}` : styles.container}
       style={width === "50%" ? null : { width: width }}
     >
@@ -22,11 +23,18 @@ const DropdownText = ({ title, content, width }) => {
           isOpen === false ? setIsOpen(true) : setIsOpen(false);
         }}
         className={isOpen ? `${styles.openButton} ${styles.active}` : styles.openButton}
+        title={title}
+        data-testid="openButton"
       >
         {title}
         <img src={whiteArrow} alt="white arrow logo" />
       </button>
-      <div className={isOpen ? `${styles.dropdownContent} ${styles.active}` : styles.dropdownContent}>{content}</div>
+      <div
+        data-testid="content"
+        className={isOpen ? `${styles.dropdownContent} ${styles.active}` : styles.dropdownContent}
+      >
+        {content}
+      </div>
     </div>
   );
 };
