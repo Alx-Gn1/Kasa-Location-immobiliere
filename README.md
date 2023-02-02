@@ -11,8 +11,10 @@ https://github.com/Alx-Gn1/kasa-location-immobiliere/tree/main
 
 ## Github Page
 
-Le router configuré n'est pas adapté à l'hébergement sur gitHub page, on arrive sur la page 404
+Lien : https://alx-gn1.github.io/kasa-location-immobiliere/
 
-Impossible d'actualiser le site si l'url ne correspond pas avec exactitude au lien ci dessous sinon on se retrouve sur la page 404 de github, le site et la navigation avec les boutons sont tout de même fonctionnels
+Le router configuré n'est pas adapté à l'hébergement sur gitHub page, on arrive sur la page 404 de l'application kasa
 
-https://alx-gn1.github.io/kasa-location-immobiliere/
+Impossible d'actualiser le site sinon on arrive sur la page 404 de github
+
+(pour que le routage soit parfaitement fonctionnel il faut télécharger le code de la branche main)
